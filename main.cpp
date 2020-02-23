@@ -31,9 +31,10 @@ int main(int argc, char* argv[]) {
   chrono::time_point<chrono::high_resolution_clock> time_start, time_end;
   chrono::duration<int64_t, std::nano> time_elapsed;
 
+  string dirname = argc > 1 ? argv[2] : "";
   string filename = argv[1];
 
-  cv::Mat maze = cv::imread(filename);
+  cv::Mat maze = cv::imread(dirname + filename);
 
   cout << "starting..." << endl;
   time_start = chrono::high_resolution_clock::now();
@@ -86,5 +87,5 @@ int main(int argc, char* argv[]) {
 
   displayImage(&maze, "maze_graph");
 
-  cv::imwrite("solved_" + filename, maze);
+  cv::imwrite(dirname + "solved_" + filename, maze);
 }
